@@ -2,12 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals'
+import { EventType, PublicClientApplication } from "@azure/msal-browser";
+import { config } from "./config";
 
+
+const pca = new PublicClientApplication({
+  auth: {
+    clientId: config.auth.clientId,
+    redirectUri: config.auth.redirectUri,
+    authority: config.auth.authority,
+  },
+  cache: {
+    cacheLocation: config.cache.cacheLocation,
+    storeAuthStateInCookie: config.cache.storeAuthStateInCookie,
+  },
+});
+
+pca.addEventCallback(ev =>{
+  if(ev.eventType === EventType.LOGIN_SUCCESS){
+    pca.setActiveAccount(ev.payload.account)
+  }
+})
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
+  <React.StrictMode >
+    <App msalInstance={pca} />
   </React.StrictMode>
 );
 
