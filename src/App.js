@@ -3,22 +3,22 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {MsalProvider} from '@azure/msal-react';
-import {NavBar} from "./components/Navbar"
+import { MsalProvider } from "@azure/msal-react";
+import { NavBar } from "./components/Navbar";
 
-function App({msalInstance}) {
+function App({ msalInstance }) {
   return (
     <div>
       <MsalProvider instance={msalInstance}>
-      <Router>
+        <Router>
           <div>
-            <NavBar/>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </Router>
+            <NavBar />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/profile" element={<Profile />} />
+            </Routes>
+          </div>
+        </Router>
       </MsalProvider>
     </div>
   );

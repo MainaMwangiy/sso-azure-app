@@ -11,8 +11,8 @@ export const NavBar = () => {
         <Link to="/" className="navbar-brand">
           SSO Azure AD App
         </Link>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
             {isAuthenticated ? (
               <li className="nav-item">
                 <Link to="/" className="nav-link">
